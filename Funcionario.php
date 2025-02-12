@@ -2,23 +2,25 @@
     namespace PHP\Modelo;
 
     class Funcionario{
-        protected string $cpf;
-        protected float $tipo;
+        protected int $id;
+        protected string $tipo;
         protected string $nome;
         protected string $telefone;
         protected string $instituicao;
         protected string $Cargo;
+        protected string $Senha;
 
         
-        public function __construct(string $cpf,float $tipo,string $nome,string $telefone,string $instituicao,string $cargo)
+        public function __construct(int $id,float $tipo,string $nome,string $telefone,string $instituicao,string $cargo,string $Senha)
 
          {//instanciar
-            $this->cpf = $cpf; 
+            $this->id = $id; 
             $this->tipo = $tipo;
             $this->nome = $nome; 
             $this->telefone = $telefone; 
             $this->instituição = $instituicao; 
             $this->cargo = $cargo;
+            $this->Senha = $Senha;
         }//fim do construct
 
         public function __get(string $variavel):mixed
@@ -33,12 +35,13 @@
 
         public function imprimir():string
         {
-            return "<br><br>CPF: ".$this->cpf.
+            return "<br><br>ID: ".$this->cpf.
                    "<br>Tipo: ".$this->tipo.
                    "<br>Nome: ".$this->nome.
                    "<br>Telefone: ".$this->telefone.
                    "<br>Instituição: ".$this->instituicao.
-                   "<br>Cargo: ".$this->cargo;
+                   "<br>Cargo: ".$this->cargo.
+                   "<br>Senha: ".$this->senha;
         }
     }//fim da classe pessoa
 ?>

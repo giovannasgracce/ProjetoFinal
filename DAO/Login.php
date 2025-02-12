@@ -4,17 +4,16 @@ require_once('Conexao.php');
 use PHP\Modelo\DAO\Conexao;
 
 class Login {
-    public function loginPessoa(Conexao $conexao, string $cpf) {
+    public function loginPessoa(Conexao $conexao, int $id, string $senha) {
         try {
-            $conn = $conexao->conectar();
-            $sql  = "select codigo, tipo from Funcionario where codigo = '$cpf'";
+            $conn = $conexao->conectar(); 
+            $sql  = "select id, tipo, senha from Funcionario where id = '$id' and senha = '$senha'";
             $result = mysqli_query($conn,$sql);
             while($dados = mysqli_fetch_Array($result))
             {
-                
-                if($dados['codigo'] == $cpf && $dados['tipo'] == 1){
+                if($dados['id'] == $id && $dados['tipo'] == 1 && $dados['senha'] == $senha){
                     header('Location: ..\Telas\MenuFuncionario.php');
-                }else if($dados['codigo'] == $cpf && $dados['tipo'] == 2){
+                }else if($dados['id'] == $id && $dados['tipo'] == 2 && $dados['senha'] == $senha){
                     header('Location: ..\Telas\MenuGerente.php');
                 }
             }

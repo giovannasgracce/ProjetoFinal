@@ -4,11 +4,11 @@
    use PHP\Modelo\DAO\Conexao;
 
    class Excluir{
-    function excluirResiduos(Conexao $conexao,string $dt,string $instituicao,string $classificacao)
+    function excluirResiduos(Conexao $conexao,int $id)
     {
         try{
             $conn = $conexao->conectar();
-            $sql  = "delete from residuos where Dt = '$dt' AND instituicao = '$instituicao' AND classificacao = '$classificacao'";
+            $sql  = "delete from residuos where id = '$id'";
             $result = mysqli_query($conn,$sql);
             mysqli_close($conn);
             if($result){
@@ -23,9 +23,9 @@
         }
     }
 
-        function excluirFuncionario(Conexao $conexao,string $cpf){
+        function excluirFuncionario(Conexao $conexao,int $id){
             $conn = $conexao->conectar();
-            $sql  = "delete from Funcionario where codigo = '$cpf'";
+            $sql  = "delete from Funcionario where id = '$id'";
             $result = mysqli_query($conn,$sql);
             mysqli_close($conn);
             if ($result){

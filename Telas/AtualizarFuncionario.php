@@ -133,8 +133,8 @@
 <section class="hero">
     <div class="atualizar-container">
         <form method="POST">
-            <label>Informe um CPF: </label>
-            <input type = "text" name="tCpf" placeholder="000.000.000-00" required/><br><br>
+            <label>ID: </label>
+            <input type = "text" name="tId" placeholder="123456" required/><br><br>
 
             <div class="mb-3">
                 <label for="lTipo" class="form-label">Selecione 1- Funcionario e 2-Gerente:</label>
@@ -151,6 +151,7 @@
                 <option value="telefone">Telefone</option>
                 <option value="instituicao">Instituição</option>
                 <option value="cargo">Cargo</option>
+                <option value="senha">Senha</option>
             </select><br><br>
 
             <label>Novo Dado: </label>
@@ -159,9 +160,9 @@
             <button type="submit">Atualizar
                 <?php
                     $conexao = new Conexao();
-                    if(isset($_POST['tCpf']) && isset($_POST['tTipo'])){
+                    if(isset($_POST['tId']) && isset($_POST['tTipo'])){
                     $atualizar = new Atualizar();
-                        $cpf =$_POST['tCpf'];
+                        $id =$_POST['tId'];
                         $tipo = $_POST['tTipo'];
                         $campo =$_POST['tCampo'];
                         $novoDado =$_POST['tNovoDado'];
@@ -171,8 +172,8 @@
             </button>
         </form>
         <?php
-            if(isset($_POST['tCpf'])){
-                echo $atualizar->atualizarFuncionario($conexao,$campo,$novoDado,$cpf,$tipo);
+            if(isset($_POST['tId'])){
+                echo $atualizar->atualizarFuncionario($conexao,$id,$tipo,$campo,$novoDado);
             }else{
                 echo "Preencha os campos vazios!";
             }

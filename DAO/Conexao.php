@@ -5,7 +5,7 @@
         function conectar(){
         try{
            
-            $conn = mysqli_connect('localhost','root','','phpOficial');
+            $conn = mysqli_connect('localhost','root','','ecoSistema');
             if($conn){
                 echo "<br>Conectado com sucesso!";
                     return $conn;

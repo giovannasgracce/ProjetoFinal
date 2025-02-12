@@ -145,16 +145,12 @@
 
         <form method="POST">
         <div class="mb-3">
-            <label for="lCpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="tCpf" name= "tCpf" placeholder="000.000.000-00" required>
-        </div>
-        <div class="mb-3">
             <label for="lPeso" class="form-label">Peso</label>
             <input type="text" class="form-control" id="tPeso"   name= "tPeso" placeholder="Insira o peso" required>
         </div>
         <div class="mb-3">
             <label for="lDt" class="form-label">Data Atual</label>
-            <input type="text" class="form-control" id="tDt" name= "tDt" placeholder="aaaa/mm/dd" required>
+            <input type="date" class="form-control" id="tDt" name= "tDt" placeholder="aaaa/mm/dd" required>
         </div>
         <div class="mb-3">
             <label for="tClassificacao" class="form-label">Selecione a classificação do resíduo:</label>
@@ -180,22 +176,25 @@
                         </select>
         </div>
         <div class="mb-3">
-            <label for="lInstituicao" class="form-label">Instituição</label>
+            <label for="lInstituicao" class="form-label">Instituição de Destino</label>
             <input type="text" class="form-control" id="tInstituicao" name= "tInstituicao" placeholder="Universidade de São Paulo (USP)" required>
+            
+            <label for="lAtual" class="form-label">Instituição Atual</label>
+            <input type="text" class="form-control" id="tAtual" name= "tAtual" placeholder="Universidade de São Paulo (USP)" required>
         </div>
         <button type="submit">Cadastrar
             <?php
                 $conexao = new Conexao();//conectar no banco
 
-                if(isset($_POST['tCpf'])){
-                    $cpf = $_POST['tCpf'];
+                if(isset($_POST['tPeso'])){
                     $peso = $_POST['tPeso'];
                     $dt = $_POST['tDt'];
                     $classificacao = $_POST['tClassificacao'];
                     $instituicao = $_POST['tInstituicao'];
+                    $atual = $_POST['tAtual'];
                     //Instaciar
                     $inserir = new Inserir();
-                    echo $inserir->cadastrarResidous($conexao,$cpf,$peso,$dt,$classificacao,$instituicao);
+                    echo $inserir->cadastrarResidous($conexao,$peso,$dt,$classificacao,$instituicao,$atual);
                 }
             ?>
         </button>

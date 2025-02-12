@@ -145,10 +145,6 @@
          <h2>Cadastro</h2>
         <form method="POST">
         <div class="mb-3">
-            <label for="lCpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="tCpf" name="tCpf" placeholder="000.000.000-00" required>
-        </div>
-        <div class="mb-3">
                 <label for="lTipo" class="form-label">Selecione 1- Funcionário e 2-Gerente:</label>
                 <select class="form-select" id="tTipo" name="tTipo" required>
                     <option value="1">1 - Funcionário</option>
@@ -171,21 +167,25 @@
             <label for="lCargo" class="form-label">Cargo</label>
             <input type="text" class="form-control" id="tCargo" name="tCargo" placeholder="Insira o Cargo" required>
         </div>
+        <div class="mb-3">
+            <label for="lSenha" class="form-label">Insira a senha</label>
+            <input type="text" class="form-control" id="tSenha" name="tSenha" placeholder="Insira a senha" required>
+        </div>
     
         <button type="submit">Cadastrar
             <?php
                 $conexao = new Conexao();//conectar no banco
 
-                if(isset($_POST['tCpf']) ){
-                    $cpf = $_POST['tCpf'];
+                if(isset($_POST['tNome']) ){
                     $tipo = $_POST['tTipo'];
                     $nome = $_POST['tNome'];
                     $telefone = $_POST['tTelefone'];
                     $instituicao = $_POST['tInstituicao'];
                     $cargo = $_POST['tCargo'];
+                    $senha = $_POST['tSenha'];
                 //Instaciar
                 $inserir = new Inserir();
-                echo $inserir->cadastrarFuncionario($conexao,$cpf,$tipo,$nome,$telefone,$instituicao,$cargo);
+                echo $inserir->cadastrarFuncionario($conexao,$tipo,$nome,$telefone,$instituicao,$cargo,$senha);
             }
             ?>
         </button>

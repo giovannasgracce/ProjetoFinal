@@ -4,10 +4,10 @@ require_once('Conexao.php');
 use PHP\Modelo\DAO\Conexao;
 
 class Consultar {
-    function consultarResidous(Conexao $conexao, string $instituicao, string $classificacao) {
+    function consultarResidous(Conexao $conexao, int $id) {
         try {
             $conn = $conexao->conectar();
-            $sql  = "SELECT * FROM residuos WHERE instituicao = '$instituicao' AND classificacao = '$classificacao'";
+            $sql  = "SELECT * FROM residuos WHERE id = '$id'";
             $result = mysqli_query($conn, $sql);
             
             // Verificar se há resultados
@@ -20,17 +20,19 @@ class Consultar {
                                     <th>Peso</th>
                                     <th>Data</th>
                                     <th>Classificação</th>
-                                    <th>Instituição</th>
+                                    <th>Instituição Atual</th>
+                                    <th>Instituição Destino</th>
                                 </tr>
                             </thead><tbody>";
                 
                 // Preencher a tabela com os dados
                 while ($dados = mysqli_fetch_array($result)) {
                     $tabela .= "<tr>";
-                    $tabela .= "<td>" . htmlspecialchars($dados['codigo']) . "</td>";
+                    $tabela .= "<td>" . htmlspecialchars($dados['id']) . "</td>";
                     $tabela .= "<td>" . htmlspecialchars($dados['peso']) . "</td>";
                     $tabela .= "<td>" . htmlspecialchars($dados['Dt']) . "</td>";
                     $tabela .= "<td>" . htmlspecialchars($dados['classificacao']) . "</td>";
+                    $tabela .= "<td>" . htmlspecialchars($dados['atual']) . "</td>";
                     $tabela .= "<td>" . htmlspecialchars($dados['instituicao']) . "</td>";
                     $tabela .= "</tr>";
                 }
@@ -52,11 +54,11 @@ class Consultar {
 
 
 
-        function consultarFuncionarioIndividual(Conexao $conexao,string $cpf)        
+        function consultarFuncionarioIndividual(Conexao $conexao,int $id)        
        {
             try{
                 $conn = $conexao->conectar();
-                $sql  = "select * from Funcionario where codigo = '$cpf'";
+                $sql  = "select * from Funcionario where id = '$id'";
                 $result = mysqli_query($conn,$sql);
                 // Verificar se há resultados
                 if (mysqli_num_rows($result) > 0) {
@@ -64,19 +66,19 @@ class Consultar {
                     $tabela = "<table class='table table-bordered'>";
                     $tabela .= "<thead>
                                     <tr>
-                                        <th>CPF</th>
+                                        <th>ID</th>
                                         <th>Tipo</th>
                                         <th>Nome</th>
                                         <th>Telefone</th>
                                         <th>Instituição</th>
                                         <th>Cargo</th>
                                     </tr>
-                                </thead><tbody>";
+                                </thead><tbody>"; 
                     
                     // Preencher a tabela com os dados
                     while ($dados = mysqli_fetch_array($result)) {
                         $tabela .= "<tr>";
-                        $tabela .= "<td>" . htmlspecialchars($dados['codigo']) . "</td>";
+                        $tabela .= "<td>" . htmlspecialchars($dados['id']) . "</td>";
                         $tabela .= "<td>" . htmlspecialchars($dados['tipo']) . "</td>";
                         $tabela .= "<td>" . htmlspecialchars($dados['nome']) . "</td>";
                         $tabela .= "<td>" . htmlspecialchars($dados['telefone']) . "</td>";

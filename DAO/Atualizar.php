@@ -4,21 +4,21 @@
    use PHP\Modelo\DAO\Conexao;
 
     class Atualizar{
-         function atualizarResidous(Conexao $conexao, string $campo, string $novoDado,string $instituicao,string $classificacao,string $cpf){
+         function atualizarResidous(Conexao $conexao, string $campo, string $novoDado,int $id){
             $conn = $conexao->conectar();
-            $sql = "update residuos set $campo = '$novoDado' where instituicao = '$instituicao' AND classificacao = '$classificacao'  AND codigo = '$cpf'   ";
+            $sql = "update residuos set $campo = '$novoDado' where id = '$id'   ";
             $result = mysqli_query($conn,$sql);
             mysqli_close($conn);
             if ($result){
                 echo "<br>Atualizar com sucesso!";
             }else{
                 echo "<br>Não atualizado";
-            }  
+            }     
         }          
         
-        function atualizarFuncionario(Conexao $conexao, string $campo, string $novoDado, string $cpf, float $tipo){
+        function atualizarFuncionario(Conexao $conexao,int $id,float $tipo, string $campo, string $novoDado){
             $conn = $conexao->conectar();
-            $sql  = "update Funcionario set $campo = '$novoDado' where codigo = '$cpf' and tipo =' $tipo' ";
+            $sql  = "update Funcionario set $campo = '$novoDado' where id = '$id' and tipo =' $tipo' ";
             $result = mysqli_query($conn,$sql);
             mysqli_close($conn);
             if ($result){

@@ -133,51 +133,22 @@
 <section class="hero">
     <div class="excluir-container">
     <form method="POST">
-    <label>Informe o ano/mês/dia: </label>
-        <input type = "text" name="tDt" placeholder="aaaa/mm/dd" required/><br><br>
-
-        <label>Informe a Instituição: </label>
-        <input type = "text" name="tInstituicao" placeholder="Universidade de São Paulo (USP)" required/><br><br>
-
-        <div class="mb-3">
-        <label for="tClassificacao" class="form-label">Selecione a classificação do resíduo:</label>
-                    <select class="form-select" id="tClassificacao" name="tClassificacao" placeholder="Ex:Não reciclável" required>
-                        <option value="nao reciclavel">Não reciclável</option>
-                        <option value="reciclavel">Reciclável</option>
-                        <option value="oleo">Óleo</option>
-                        <option value="tampinhas plasticas">Tampinhas plásticas</option>
-                        <option value="lacres de aluminio">Lacres de alumínio</option>
-                        <option value="tecidos">Tecidos</option>
-                        <option value="meias">Meias</option>
-                        <option value="material de escrita">Material de escrita</option>
-                        <option value="esponjas">Esponjas</option>
-                        <option value="eletronicos">Eletrônicos</option>
-                        <option value="pilhas e baterias">Pilhas e baterias</option>
-                        <option value="infectante">Infectante</option>
-                        <option value="quimicos">químicos</option>
-                        <option value="lampada fluorescente">Lâmpada fluorescente</option>
-                        <option value="tonners de impressora">Tonners de impressora</option>
-                        <option value="esmaltes">esmaltes</option>
-                        <option value="cosmeticos">Cosméticos</option>
-                        <option value="cartela de medicamento">Cartela de medicamento</option>
-                    </select>
-     </div>
+        <label>Informe o código: </label>
+        <input type = "text" name="tId" placeholder="123456" required/><br><br>
 
         <button type="submit">Excluir
             <?php
                 $conexao = new Conexao();
-                if(isset($_POST['tDt']) && isset($_POST['tInstituicao']) && isset($_POST['tClassificacao'])){
-                    $dt = $_POST['tDt'];
-                    $instituicao = $_POST['tInstituicao'];
-                    $classificacao = $_POST['tClassificacao'];
+                if(isset($_POST['tId'])){
+                    $id = $_POST['tId'];
                 $excluir = new Excluir();
                 }  
             ?>
           </button>
     </form>
     <?php
-        if(isset($_POST['tDt']) && isset($_POST['tInstituicao']) && isset($_POST['tClassificacao'])){
-            echo $excluir->excluirResiduos($conexao,$dt,$instituicao,$classificacao);
+        if(isset($_POST['tId'])){
+            echo $excluir->excluirResiduos($conexao,$id);
         }else{
             echo "";
         }

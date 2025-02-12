@@ -134,23 +134,23 @@
 <section class="hero">
     <div class="consultar-container"> 
         <form method="POST">
-            <label>Informe um CPF: </label>
-            <input type = "text" name="tCpf" placeholder="000.000.000-00" required/>
+            <label>Informe um ID: </label>
+            <input type = "text" name="tId" placeholder="123456" required/>
             <button type="submit">Consultar
                 <?php
                     $conexao = new Conexao();
-                    if(isset($_POST['tCpf'])){
-                        $cpf = $_POST['tCpf'];
+                    if(isset($_POST['tId'])){
+                        $id = $_POST['tId'];
                     $consultar = new Consultar();
                     }  
                 ?>
             </button>
     </form>
         <?php
-            if(isset($_POST['tCpf'])){
-            echo $consultar->consultarFuncionarioIndividual($conexao,$cpf);
+            if(isset($_POST['tId'])){
+            echo $consultar->consultarFuncionarioIndividual($conexao,$id);
             }else{
-                echo "Preencha o campo CPF";
+                echo "Preencha o campo ID";
             }
         ?>
      </div>

@@ -151,7 +151,7 @@
             <?php
                 $conexao = new Conexao();//conectar no banco
 
-                if(isset($_POST['email']) ){
+                if(isset($_POST['email']) && isset($_POST['nome']) ){
                     $nome = $_POST['nome'];
                     $email = $_POST['email'];
                     $duvida = $_POST['duvida'];

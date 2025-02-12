@@ -107,30 +107,21 @@
     <div class="login-container">
         <h2>Login</h2>
         <form  method="POST">
-            <input type="text" name="tCpf" placeholder="Digite seu CPF" required>
+            <input type="text" name="tId" placeholder="Digite seu ID" required>
+            <input type="text" name="tSenha" placeholder="Digite sua senha" required>
             <button type="submit" class = "cor-button">Entrar
                 <?php
-                if(isset($_POST['tCpf'])){
+                if(isset($_POST['tId']) && isset($_POST['tSenha'])){
                     $conexao = new Conexao();    
                     $login = new Login();
-                    if($login->loginPessoa($conexao,$_POST['tCpf']) == true)
-                    {
-                        
-                    }else{
-                        echo "Não Entrei";
-                    }
+                    if($login->loginPessoa($conexao, $_POST['tId'], $_POST['tSenha'])==false){
+                        echo "Algo deu errado!";
+                    }                   
 
                 }  
             ?>
             </button>
         </form>
-    <?php
-        if(isset($_POST['tCpf'])){
-            //echo $acessar->loginPessoa($conexao,$cpf);
-        }else{
-            //return "Preencha os campos vazios!";
-        }
-    ?>
    </div> 
     </section>
     

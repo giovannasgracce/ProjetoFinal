@@ -140,11 +140,9 @@
 <section class="hero">
     <div class="atualizar-container">
         <form method="POST">
-            <label>Informe a Instituição: </label>
-            <input type="text" name="tInstituicao" placeholder="Universidade de São Paulo (USP)" required/><br><br>
-
-            <label >CPF:</label>
-            <input type="text"  name= "tCpf" placeholder="000.000.000-00" required><br><br>
+        
+            <label >ID:</label>
+            <input type="text"  name= "tId" placeholder="123456" required><br><br>
 
             <div class="mb-3">
                 <label for="tClassificacao" class="form-label">Selecione a classificação do resíduo:</label>
@@ -172,11 +170,11 @@
 
             <label>Informe sua atualização: </label>
             <select name="tCampo">
-                <option value="cpf">CPF</option>
                 <option value="peso">Peso</option>
                 <option value="dt">Data</option>
                 <option value="classificacao">Classificação do Resíduo</option>
-                <option value="instituicao">Instituição</option>
+                <option value="instituicao">Instituição de Destino</option>
+                <option value="instituicao">Instituição Atual</option>
             </select><br><br>
 
             <label>Insira o novo dado: </label>
@@ -186,8 +184,8 @@
         </form>
 
         <?php
-            if(isset($_POST['tInstituicao']) && isset($_POST['tCampo']) && isset($_POST['tNovoDado'])) {
-                echo $atualizar->atualizarResidous($conexao, $_POST['tCampo'], $_POST['tNovoDado'], $_POST['tInstituicao'], $_POST['tClassificacao'], $_POST['tCpf']);
+            if(isset($_POST['tId']) && isset($_POST['tCampo']) && isset($_POST['tNovoDado'])) {
+                echo $atualizar->atualizarResidous($conexao, $_POST['tCampo'], $_POST['tNovoDado'], $_POST['tId']);
             }
         ?>
      </div>

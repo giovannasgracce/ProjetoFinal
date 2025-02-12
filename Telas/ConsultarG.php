@@ -137,49 +137,26 @@ use PHP\Modelo\DAO\Consultar;
 <section class="hero">
     <div class="consultar-container">
         <form method="POST">
-            <label>Informe a Instituição: </label>
-            <input type="text" name="tInstituicao" placeholder="Universidade de São Paulo (USP)" required>
+            <label>Informe o código: </label>
+            <input type="text" name="tId" placeholder="123456" required>
 
-            <div class="mb-3">
-                <label for="tClassificacao" class="form-label">Selecione a classificação do resíduo:</label>
-                <select class="form-select" id="tClassificacao" name="tClassificacao" required>
-                    <option value="nao reciclavel">Não reciclável</option>
-                    <option value="reciclavel">Reciclável</option>
-                    <option value="oleo">Óleo</option>
-                    <option value="tampinhas plasticas">Tampinhas plásticas</option>
-                    <option value="lacres de aluminio">Lacres de alumínio</option>
-                    <option value="tecidos">Tecidos</option>
-                    <option value="meias">Meias</option>
-                    <option value="material de escrita">Material de escrita</option>
-                    <option value="esponjas">Esponjas</option>
-                    <option value="eletronicos">Eletrônicos</option>
-                    <option value="pilhas e baterias">Pilhas e baterias</option>
-                    <option value="infectante">Infectante</option>
-                    <option value="quimicos">Químicos</option>
-                    <option value="lampada fluorescente">Lâmpada fluorescente</option>
-                    <option value="tonners de impressora">Toners de impressora</option>
-                    <option value="esmaltes">Esmaltes</option>
-                    <option value="cosmeticos">Cosméticos</option>
-                    <option value="cartela de medicamento">Cartela de medicamento</option>
-                </select>
-            </div>
 
             <button type="submit" name="consultar">Consultar</button>
         </form>
 
         <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tInstituicao']) && isset($_POST['tClassificacao'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tId'])) {
             $conexao = new Conexao();
             $consultar = new Consultar();
             
-            $instituicao = $_POST['tInstituicao'];
-            $classificacao = $_POST['tClassificacao'];
+            $id = $_POST['tId'];
 
-            echo $consultar->consultarResidous($conexao, $instituicao, $classificacao);
+            echo $consultar->consultarResidous($conexao, $id);
         }
         ?>
     </div>
 </section>
+
 
 <footer>
     <p>&copy; 2025 Sistema de Gestão de Resíduos do Senac - Todos os direitos reservados.</p>
